@@ -1,0 +1,14 @@
+runtime/logs/*
+*.exe
+*~
+.idea/
+tests/
+vendor/
+openai-backend.iml
+go_build_main_go_darwin
+main
+.static/
+tests/readme
+shell
+test/
+README.md

@@ -1,0 +1,6 @@
+# ignore all except .gitignore file
+*
+!.gitignore
+!js
+!report
+!upload

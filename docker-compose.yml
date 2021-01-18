@@ -1,0 +1,34 @@
+version: '0.1'
+
+services: 
+  pg:
+    restart: always
+    image: postgres:9.6
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - 15432:5432
+  kong:
+    restart: always
+    image: ubd/kong:2.2.0
+    environment: 
+      - KONG_DATABASE:postgres
+      - KONG_PG_HOST=172.18.0.1
+      - KONG_PG_PORT=15432
+      - KONG_PG_USER=kong
+      - KONG_PG_PASSWORD=123456
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+    ports: 
+      - 18000:8000
+      - 18001:8001
+  konga:
+    restart: always
+    image: pantsel/konga
+    ports: 
+      - 11337:1337
+
+volumes:
+  pg_data:
